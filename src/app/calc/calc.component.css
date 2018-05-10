@@ -1,0 +1,43 @@
+/* .container
+{
+    border-style: solid;
+} */
+.buttonAdd
+{
+    height:50px;
+    width:50%;
+}
+.buttonSubtract
+{
+    height:50px;
+    width:50%;
+}
+.buttonDivision
+{
+    height:50px;
+    width:50%;
+}
+.buttonMultiply
+{
+    height:50px;
+    width:50%;
+}
+.zero
+{
+    width:50%;
+}
+.txt1
+{
+    width:100%;
+}
+/* 
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+.textBox {
+    float: left;
+}
