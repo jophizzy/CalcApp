@@ -8,112 +8,76 @@ import { CalcService } from '../calc.service';
 })
 export class CalcComponent implements OnInit {
   public result: number;
-  public textValue: string;
-  public textValue2: string;
+  public mockString: string;
+  public mockString2: string;
   public value1: number;
   public value2: number;
   public operator: string;
   public finished: string;
-
-  clearResult() {
-    this.result = null;
-    this.textValue = '';
-    this.textValue2 = '';
-    this.operator = '';
-    this.ngOnInit();
-  }
+  public equalSign: string;
+  public text: string;
 
   displayNum(num: string) {
-    this.textValue += num;
-    this.value1 = Number(this.textValue);
+    if (this.finished.match('done')) {
+      this.ngOnInit();
+      if (this.operator === ('')) {
+        this.value1 = Number(this.value1 != null ? this.value1.toString() : '' + num);
+      }
+      if (this.value1 != null && this.operator === ('')) {
+        this.displayOperator(this.operator);
+      } else if (this.value1 !== null) {
+        this.value2 = Number(this.value2 != null ? this.value2.toString() : '' + num);
+      }
+    } else {
+      if (this.operator === ('')) {
+        this.value1 = Number(this.value1 != null ? this.value1.toString() : '' + num);
+        console.log(this.value1);
+      }
+      if (this.operator === ('')) {
+        this.displayOperator(this.operator);
+      } else if (this.value1 !== null) {
+        this.value2 = Number(this.value2 != null ? this.value2.toString() : '' + num);
+      }
+    }
   }
-
-  displayPlus() {
-    this.value1 = Number(this.textValue);
-    this.value1 = -1 * this.value1;
-    this.textValue = String(this.value1);
-  }
-
-  displayPercent() {
-    this.value1 = Number(this.textValue);
-    this.textValue += '% = ';
-    this.value1 = this.value1 / 100;
-    this.textValue += String(this.value1);
-    this._calcService.storeLog(this.textValue);
-  }
-  resultMultiplication(op) {
-    this.value1 = Number(this.textValue);
-    this.value2 = this.value1;
-    this.textValue2 += this.textValue;
-    this.textValue = '';
-    this.operator = op;
-    this.textValue2 += ' * ';
-  }
-
-  resultDivision(op) {
-    this.value1 = Number(this.textValue);
-    this.value2 = this.value1;
-    this.textValue2 += this.textValue;
-    this.textValue = '';
-    this.operator = op;
-    this.textValue2 += ' / ';
-  }
-
-  resultAdd(op) {
-    this.value1 = Number(this.textValue);
-    this.value2 = this.value1;
-    this.textValue2 += this.textValue;
-    this.textValue = '';
-    this.operator = op;
-    this.textValue2 += ' + ';
-  }
-
-  resultSubtract(op) {
-    this.value1 = Number(this.textValue);
-    this.value2 = this.value1;
-    this.textValue2 += this.textValue;
-    this.textValue = '';
-    this.operator = op;
-    this.textValue2 += ' - ';
+  displayOperator (operatorName: string) {
+    if (operatorName.match('division')) {
+      this.operator = '/';
+    } else if (operatorName.match('multiply')) {
+      this.operator = '*';
+    } else if (operatorName.match('add')) {
+      this.operator = '+';
+    } else if (operatorName.match('subtract')) {
+      this.operator = '-';
+    } else {}
   }
 
   resultFinal() {
-    this.textValue = String(this.value1);
+    if (this.operator === ('/')) {
+      this.equalSign = '=';
+      this.result = this.value1 / this.value2;
+    } else if (this.operator === ('*')) {
+      this.equalSign = '=';
+      this.result = this.value1 * this.value2;
+    } else if (this.operator === ('+')) {
+      this.equalSign = '=';
+      this.result = this.value1 + this.value2;
+    } else if (this.operator === ('-')) {
+      this.equalSign = '=';
+      this.result = this.value1 - this.value2;
+    } else {}
+    this._calcService.storeLog(String(this.value1) + this.operator + String(this.value2) + this.equalSign + this.result);
     this.finished = 'done';
-    if (this.operator.match('multiply')) {
-      this.textValue2 += this.value1;
-      this.result = this.value2 * this.value1;
-      this.textValue2 += ' = ';
-      this.textValue = String(this.result);
-      this._calcService.storeLog(this.textValue2 + this.textValue);
-    } else if (this.operator.match('add')) {
-      this.textValue2 += this.value1;
-      this.result = this.value2 + this.value1;
-      this.textValue2 += ' = ';
-      this.textValue = String(this.result);
-      this._calcService.storeLog(this.textValue2 + this.textValue);
-    } else if (this.operator.match('subtract')) {
-      this.textValue2 += this.value1;
-      this.result = this.value2 - this.value1;
-      this.textValue2 += ' = ';
-      this.textValue = String(this.result);
-      this._calcService.storeLog(this.textValue2 + this.textValue);
-    } else if (this.operator.match('division')) {
-      this.textValue2 += this.value1;
-      this.result = this.value2 / this.value1;
-      this.textValue2 += ' = ';
-      this.textValue = String(this.result);
-      this._calcService.storeLog(this.textValue2 + this.textValue);
-    } else {
-      console.log('Odd');
-    }
   }
-  constructor (private _calcService: CalcService) {
-
-  }
-
+  constructor (private _calcService: CalcService) {}
   ngOnInit() {
-    this.textValue = '';
-    this.textValue2 = '';
+    this.result = null;
+    this.mockString = '';
+    this.mockString2 = '';
+    this.operator = '';
+    this.value1 = null;
+    this.value2 = null;
+    this.equalSign = '';
+    this.finished = '';
   }
 }

@@ -2,9 +2,12 @@
   List of Operations
 </mat-toolbar>
 <h3>
-  <pre>{{operations}}</pre>
+  <ul class = "a">
+    <li *ngFor="let operation of operations">
+      {{operation}}
+    </li>
+  </ul>
 </h3>
-
 <a routerLink="/calc">
   <button mat-raised-button color="primary">
     Go back to calculator

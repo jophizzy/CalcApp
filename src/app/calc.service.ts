@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CalcService {
-  operation = '';
+  operation = [];
   constructor() { }
   storeLog(name: string) {
     console.log(name);
-    this.operation += name;
-    this.operation += '\n';
+    this.operation.push(name);
   }
-
-  getLog(): string {
+  getLog() {
     return this.operation;
   }
 }

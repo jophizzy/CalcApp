@@ -7,7 +7,7 @@ import { CalcService } from '../calc.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  operations: string;
+  operations = [];
   constructor (private _calcService: CalcService) {
     this.operations = this._calcService.getLog();
   }
