@@ -13,43 +13,72 @@ export class CalcComponent implements OnInit {
   public value1: number;
   public value2: number;
   public operator: string;
-  public finished: string;
+  public finished: boolean;
   public equalSign: string;
   public text: string;
 
   displayNum(num: string) {
-    if (this.finished.match('done')) {
-      this.ngOnInit();
+    if (this.finished === true) {
+      this.reset();
       if (this.operator === ('')) {
-        this.value1 = Number(this.value1 != null ? this.value1.toString() : '' + num);
+        if (num === 'percent') {
+          this.value1 = Number(this.value1 != null ? this.value1.toString() : '0') / 100;
+        } else if (num === 'plusMinus') {
+          this.value1 *= -1;
+        } else { this.value1 = Number(this.value1 != null ? this.value1.toString() + num : '' + num); }
       }
       if (this.value1 != null && this.operator === ('')) {
         this.displayOperator(this.operator);
       } else if (this.value1 !== null) {
-        this.value2 = Number(this.value2 != null ? this.value2.toString() : '' + num);
+          if (num === 'percent') {
+            this.value2 = Number(this.value2 != null ? this.value2.toString() : '0') / 100;
+          } else if (num === 'plusMinus') {
+            this.value2 *= -1;
+          } else { this.value2 = Number(this.value2 != null ? this.value2.toString() + num : '' + num); }
       }
     } else {
-      if (this.operator === ('')) {
-        this.value1 = Number(this.value1 != null ? this.value1.toString() : '' + num);
-        console.log(this.value1);
-      }
-      if (this.operator === ('')) {
-        this.displayOperator(this.operator);
-      } else if (this.value1 !== null) {
-        this.value2 = Number(this.value2 != null ? this.value2.toString() : '' + num);
-      }
+        if (this.operator === ('')) {
+          if (num === 'percent') {
+            this.value1 = Number(this.value1 != null ? this.value1.toString() : '0') / 100;
+          } else if (num === 'plusMinus') {
+              this.value1 *= -1;
+          } else { this.value1 = Number(this.value1 != null ? this.value1.toString() + num : '' + num); }
+        }
+        if (this.value1 != null && this.operator === ('')) {
+          this.displayOperator(this.operator);
+        } else if (this.value1 !== null) {
+            if (num === 'percent') {
+              this.value2 = Number(this.value2 != null ? this.value2.toString() : '0') / 100;
+            } else if (num === 'plusMinus') {
+              this.value2 *= -1;
+            } else {
+              this.value2 = Number(this.value2 != null ? this.value2.toString() + num : '' + num);
+            }
+        }
     }
   }
+
   displayOperator (operatorName: string) {
-    if (operatorName.match('division')) {
+    if (operatorName === 'division') {
       this.operator = '/';
-    } else if (operatorName.match('multiply')) {
+    } else if (operatorName === 'multiply') {
       this.operator = '*';
-    } else if (operatorName.match('add')) {
+    } else if (operatorName === 'add') {
       this.operator = '+';
-    } else if (operatorName.match('subtract')) {
+    } else if (operatorName === 'subtract') {
       this.operator = '-';
     } else {}
+  }
+
+  reset() {
+    this.result = null;
+    this.mockString = '';
+    this.mockString2 = '';
+    this.operator = '';
+    this.value1 = null;
+    this.value2 = null;
+    this.equalSign = '';
+    this.finished = false;
   }
 
   resultFinal() {
@@ -67,8 +96,9 @@ export class CalcComponent implements OnInit {
       this.result = this.value1 - this.value2;
     } else {}
     this._calcService.storeLog(String(this.value1) + this.operator + String(this.value2) + this.equalSign + this.result);
-    this.finished = 'done';
+    this.finished = true;
   }
+
   constructor (private _calcService: CalcService) {}
   ngOnInit() {
     this.result = null;
@@ -78,6 +108,6 @@ export class CalcComponent implements OnInit {
     this.value1 = null;
     this.value2 = null;
     this.equalSign = '';
-    this.finished = '';
+    this.finished = false;
   }
 }

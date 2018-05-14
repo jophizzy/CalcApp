@@ -12,8 +12,8 @@
       </form>
       <form name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button mat-raised-button color="basic" (click)='ngOnInit()'>AC</button>
-        <button mat-raised-button color="basic" (click)="displayPlusMinus()">+/-</button>
-        <button mat-raised-button color="basic" (click)="displayPercent()">%</button>
+        <button mat-raised-button color="basic" (click)="displayNum('plusMinus')">+/-</button>
+        <button mat-raised-button color="basic" (click)="displayNum('percent')">%</button>
         <button class = "buttonDivision" mat-raised-button color="primary" value="/" (click)='displayOperator("division")'>
           <mat-icon>/</mat-icon>
         </button>
