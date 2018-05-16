@@ -9,8 +9,9 @@ import { CalcService } from '../calc.service';
 export class ListComponent implements OnInit {
   operations = [];
   constructor (private _calcService: CalcService) {
-    this.operations = this._calcService.getLog();
+    // this.operations = this._calcService.getLog();
   }
   ngOnInit() {
+    this.operations = this._calcService.getLog();
   }
 }

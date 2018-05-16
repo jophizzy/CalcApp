@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'calc', component: CalcComponent },
   { path: 'home', component: HomeComponent },
   { path: 'list', component: ListComponent },

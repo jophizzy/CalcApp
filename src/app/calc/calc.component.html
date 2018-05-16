@@ -11,7 +11,7 @@
         </mat-toolbar>
       </form>
       <form name="calculator" fxLayout="row" fxLayoutGap="1px">
-        <button mat-raised-button color="basic" (click)='ngOnInit()'>AC</button>
+        <button mat-raised-button color="basic" class="acButton" (click)='reset()'>AC</button>
         <button mat-raised-button color="basic" (click)="displayNum('plusMinus')">+/-</button>
         <button mat-raised-button color="basic" (click)="displayNum('percent')">%</button>
         <button class = "buttonDivision" mat-raised-button color="primary" value="/" (click)='displayOperator("division")'>
@@ -44,7 +44,7 @@
       </form>
       <form name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button class="zero" mat-raised-button color="basic" value="0" (click)="displayNum('0')">0</button> 
-        <button mat-raised-button color="basic" value="." (click)="displayNum('0.0')">.</button> 
+        <button mat-raised-button color="basic" value="." (click)="displayNum('.')">.</button> 
         <button class = "buttonEqual" mat-raised-button (click)='resultFinal()' color="warn">
             <mat-icon>drag_handle</mat-icon>
         </button>
