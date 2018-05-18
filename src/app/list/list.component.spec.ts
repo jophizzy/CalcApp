@@ -51,6 +51,10 @@ describe('ListComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should go to calc page on Go back to Calculator click', async(() => {
     const button = fixture.nativeElement.querySelector('button');
     // const button = fixture.debugElement.query(By.css('button')).nativeElement; Same as line 45
@@ -61,7 +65,7 @@ describe('ListComponent', () => {
     });
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('', async(() => {
+
+  }));
 });

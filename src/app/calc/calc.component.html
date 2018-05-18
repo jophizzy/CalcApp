@@ -3,57 +3,56 @@
     <mat-toolbar color="accent">
       <span>Calculator App</span>
     </mat-toolbar>
-      <form name="calculator" fxLayout="row">
+      <div name="calculator" fxLayout="row">
         <mat-toolbar>
             <span class="textBox">
                 {{value1}} {{operator}} {{value2}} {{equalSign}} {{result}}
             </span>
         </mat-toolbar>
-      </form>
-      <form name="calculator" fxLayout="row" fxLayoutGap="1px">
+      </div>
+      <div name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button mat-raised-button color="basic" class="acButton" (click)='reset()'>AC</button>
         <button mat-raised-button color="basic" (click)="displayNum('plusMinus')">+/-</button>
         <button mat-raised-button color="basic" (click)="displayNum('percent')">%</button>
         <button class = "buttonDivision" mat-raised-button color="primary" value="/" (click)='displayOperator("division")'>
           <mat-icon>/</mat-icon>
         </button>
-      </form>
-      <form name="calculator" fxLayout="row" fxLayoutGap="1px">
+      </div>
+      <div name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button mat-raised-button color="basic" value="7" (click)="displayNum('7')">7</button>
         <button mat-raised-button color="basic" value="8" (click)="displayNum('8')">8</button>
         <button mat-raised-button color="basic" value="9" (click)="displayNum('9')">9</button>
         <button class = "buttonMultiply" mat-raised-button color="primary" value="*" (click)='displayOperator("multiply")'>
           <mat-icon>clear</mat-icon>
         </button>
-      </form>
-      <form name="calculator" fxLayout="row" fxLayoutGap="1px">
+      </div>
+      <div name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button mat-raised-button color="basic" value="4" (click)="displayNum('4')">4</button>
         <button mat-raised-button color="basic" value="5" (click)="displayNum('5')">5</button>
         <button mat-raised-button color="basic" value="6" (click)="displayNum('6')">6</button>
         <button class = "buttonSubtract" name="btnSubtract" mat-raised-button color="primary" value="-" (click)='displayOperator("subtract")'>
           <mat-icon>remove</mat-icon>
         </button>
-      </form>   
-      <form name="calculator" fxLayout="row" fxLayoutGap="1px">
-        <button mat-raised-button color="basic" value="1" (click)="displayNum('1')">1</button>
+      </div>   
+      <div name="calculator" fxLayout="row" fxLayoutGap="1px">
+        <button mat-raised-button color="basic" class="button1" value="1" (click)="displayNum('1')">1</button>
         <button mat-raised-button color="basic" value="2" (click)="displayNum('2')">2</button>
         <button mat-raised-button color="basic" value="3" (click)="displayNum('3')">3</button>
         <button class = "buttonAdd" mat-raised-button color="primary" value="+" (click)='displayOperator("add")'>
             <mat-icon>add</mat-icon>
         </button>
-      </form>
-      <form name="calculator" fxLayout="row" fxLayoutGap="1px">
+      </div>
+      <div name="calculator" fxLayout="row" fxLayoutGap="1px">
         <button class="zero" mat-raised-button color="basic" value="0" (click)="displayNum('0')">0</button> 
-        <button mat-raised-button color="basic" value="." (click)="displayNum('.')">.</button> 
+        <button mat-raised-button color="basic" value=".">.</button> 
         <button class = "buttonEqual" mat-raised-button (click)='resultFinal()' color="warn">
             <mat-icon>drag_handle</mat-icon>
         </button>
-      </form>
+      </div>
   </div>
 </div>
 <br/>
-<a routerLink="/list">
-  <button mat-raised-button color="accent">
-    View List of Operations
-  </button>
-</a>
+<button class="linkList" routerLink="/list" mat-raised-button color="accent">
+  View List of Operations
+</button>
+

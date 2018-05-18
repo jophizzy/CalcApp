@@ -14,7 +14,6 @@ describe('CalcService', () => {
   });
 
   it('should be created', () => {
-    console.log(mockService);
     expect(mockService).toBeTruthy();
   });
 
